@@ -1,0 +1,22 @@
+.cart_wrap {
+    width: 80%;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    margin: auto;
+    color: black;
+}
+
+.cart_wrap ul li .plus {
+    width: 40px;
+    height: 40px;
+    font-size: 19px;
+    cursor: pointer;
+    border: 1px solid #009999;
+    color: #009999;
+    border-radius: 5px;
+}
+
+.cart {
+    border: 1px solid darkblue;
+}

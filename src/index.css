@@ -5,9 +5,33 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: dodgerblue;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.list_item_cart {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+}
+
+.btns_group_cart {
+  display: flex;
+  align-items: center;
+}
+
+.list_item_cart .btns_group_cart h3 {
+  color: red;
+  width: 100px;
+  margin: 10px;
+
+}
+
+.list_item_cart .btns_group_cart h3:nth-child(1) {
+  width: 200px;
 }

@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { Outlet } from 'react-router-dom';
 import './App.css';
-
+import Menu from './components/menu/Menu';
+import { useContext } from 'react';
+import { ProductContext } from './context/ProductContext';
+import ReactLoading from "react-loading";
 function App() {
+  const { addOrder } = useContext(ProductContext)
+  // console.log(producttDate);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Menu />
+      <Outlet />
+
+      {/* <ReactLoading  className='loading' type={"spokes"} color='black' width={300} height={300} /> */}
+
+      <button onClick={addOrder}>Zakaz berish</button>
     </div>
   );
 }
