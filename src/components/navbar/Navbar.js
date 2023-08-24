@@ -21,7 +21,7 @@ function Navbar() {
 
             <div className="navbar_cart">
                 <Link to="/order">zakazlar</Link>
-                <Link to="/madeorder">Made order</Link>
+                <Link to="/madeorder">tayyor bolganlari</Link>
                 <Link to="/cart">
                     <img className='img1' src={img1} alt="" />
                     <span>{cart.length}</span>
