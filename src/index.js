@@ -4,25 +4,27 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Issiq from './components/Issiq/Issiq';
-import Gazlik from './components/gazlik/Gazlik';
-import Gazsiz from './components/gazsiz/Gazsiz';
-import Taomlar from './components/Taomlar/Taomlar';
+import Issiq from './components/Issiq';
+import Gazlik from './components/Gazlik';
+import Gazsiz from './components/Gazsiz';
+import Taomlar from './components/Taomlar';
 import Cart from './pages/Cart/Cart';
 import { ContextProvider } from './context/ProductContext';
-import Navbar from './components/navbar/Navbar';
 import Order from './pages/order/Order';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 // import Pushers from './Pushers';
 import Madeorder from './pages/madeorder/Madeorder';
+import Header from './components/Header';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ContextProvider>
         <ToastContainer />
-        <Navbar />
+        <Header />
+
+
         <Routes>
           <Route path='/' element={<App />}>
             <Route path='products/issiq' element={<Issiq />} />

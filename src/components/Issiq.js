@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import './Issiq.css'
+// import './Issiq.css'
 // import img1 from "../../image/shopping-cart.png"
 
-import { menu_items } from "../../Static_data"
+import { menu_items } from "../Static_data"
 // import { Link } from 'react-router-dom'
 // import { ProductContext } from '../../context/ProductContext'
 // import { useContext } from 'react'
-import Listitem from '../listItem/Listitem'
+import Listitem from './Listitem'
 
 
 
@@ -23,18 +23,20 @@ function Issiq() {
     }, [])
 
     return (
-        <div className='Products'>
+        <div className='border-2 w-full border-black  m-auto '>
             <div className="icon">
                 <h1>Issiq ichimlik</h1>
+
             </div>
 
-            <ul>
+            <ul className='w-full'>
                 {
                     data.map(item => (
                         <Listitem product={item} key={item.id} />
                     ))
                 }
             </ul>
+
         </div>
     )
 }

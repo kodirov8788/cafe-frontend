@@ -1,4 +1,3 @@
-import img1 from './image/shopping-cart.png'
 
 export const menu_items = [
     {
@@ -6,7 +5,6 @@ export const menu_items = [
         name: "quyon sho'rva",
         category: "taomlar",
         price: 28000,
-        image: img1,
     },
     {
         id: 2,
