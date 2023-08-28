@@ -1,5 +1,4 @@
-import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import Orderlist from './Orderlist'
 import { ProductContext } from '../../context/ProductContext'
 // import { stol } from '../../Static_data'
@@ -7,10 +6,10 @@ import { ProductContext } from '../../context/ProductContext'
 function Order() {
     const { data } = useContext(ProductContext)
 
+
     return (
         <div>
             <h1>Order</h1>
-
             <div className="">
                 {
                     data?.map((order, index) => (

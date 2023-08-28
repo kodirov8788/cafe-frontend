@@ -14,8 +14,27 @@ export const ContextProvider = ({ children }) => {
 
     const [messages, setMessages] = useState([]);
     const [places, setPlaces] = useState([]);
+    const [cartData, setCartData] = useState([])
     const [data, setData] = useState([])
+    const [producttDate, setproducttDate] = useState('maxsulot')
+    const [cart, setCart] = useState([])
+    const [place, setPlace] = useState("")
+    const [madeOrder, setMadeOrder] = useState([])
 
+
+    useEffect(() => {
+        const getApi = async () => {
+            await axios.get("order/get")
+                .then(res => {
+
+                    let filtered = res?.data.filter(item => item.isready === true)
+                    setMadeOrder(filtered)
+
+                })
+                .catch(error => console.log(error))
+        }
+        getApi()
+    }, [messages])
 
     useEffect(() => {
 
@@ -63,9 +82,7 @@ export const ContextProvider = ({ children }) => {
         audio.play();
     }
 
-    const [producttDate, setproducttDate] = useState('maxsulot')
-    const [cart, setCart] = useState([])
-    const [place, setPlace] = useState("")
+
 
 
 
@@ -106,7 +123,7 @@ export const ContextProvider = ({ children }) => {
         }
 
         findDuplicateUsers()
-            .then(user => setData(user))
+            .then(user => setCartData(user))
             .catch(error => console.log(error))
     }, [cart]);
 
@@ -143,6 +160,6 @@ export const ContextProvider = ({ children }) => {
 
 
 
-    let contextData = { setPlaces, places, producttDate, setproducttDate, cart, setCart, place, setPlace, user, messages, setData, data, addOrder }
+    let contextData = { setPlaces, places, producttDate, setproducttDate, cartData, cart, setCart, place, setPlace, user, messages, setData, data, addOrder, setMadeOrder, madeOrder }
     return <ProductContext.Provider value={contextData}>{children}</ProductContext.Provider>
 }
