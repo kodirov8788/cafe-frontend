@@ -13,9 +13,7 @@ function Madeorder() {
             <div className="">
                 {
                     madeOrder?.map((order, index) => (
-
                         <Madeorderlist order={order} key={index} index={index} />
-
                     ))
                 }
             </div>

@@ -1,16 +1,32 @@
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ProductContext } from '../context/ProductContext'
+import { toast } from 'react-toastify'
 
 function Header() {
     const { cart, data, madeOrder } = useContext(ProductContext)
-    console.log("data: ", data)
+    // console.log("data: ", data)
     const navigate = useNavigate()
+    const movingCart = () => {
+
+        if (cart.length < 1) {
+            toast.info("Savat bo'sh, maxsulot tanglang!", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 2000,
+            });
+        } else {
+            navigate("/cart")
+        }
+
+
+    }
+
+
     return (
         <header>
             <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
                 <Link to="/" className="text-center ">
-                    <h1 className="text-xl text-center  font-semibold  dark:text-white">Online Cafe</h1>
+                    <h1 className="text-xl text-center  font-semibold  dark:text-white">Cafee.uz</h1>
                 </Link>
                 <div className="grid grid-cols-2 lg:order-2 gap-2 mt-3">
                     <button onClick={() => navigate(-1)} type="button" className="text-white bg-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center w-full h-[50px]">
@@ -42,7 +58,7 @@ function Header() {
                     </Link>
 
 
-                    <Link to="/cart" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  w-full h-[50px]" >
+                    <button onClick={movingCart} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  w-full h-[50px]" >
 
                         <span className="inline-flex mr-3 items-center justify-center w-[20px] h-[20px] ml-2 text-md font-semibold text-blue-800 bg-blue-200 rounded-full">
                             {cart.length}
@@ -52,7 +68,7 @@ function Header() {
                         <svg className="w-6 h-6 mr-2 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
                             <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
                         </svg>
-                    </Link>
+                    </button>
 
                     {/* <button data-collapse-toggle="mobile-menu-2" type="button" className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
                         <span className="sr-only">Open main menu</span>
