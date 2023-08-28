@@ -23,7 +23,7 @@ function Issiq() {
     }, [])
 
     return (
-        <div className='shadow-md m-auto w-[92%] h-[60vh] my-5 rounded-lg overflow-auto'>
+        <div className='shadow-md m-auto w-[92%]  h-[50vh] my-5 rounded-lg overflow-auto'>
             <div className="p-3 bg-blue-600 font-bold text-xl text-center mb-3 text-white">
                 <h1>Issiq ichimlik</h1>
 
