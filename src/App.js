@@ -13,7 +13,7 @@ function App() {
   const [menuState, setMenuState] = useState(false)
   let pathname = useLocation().pathname
   // console.log(producttDate);
-  console.log(menuState)
+  // console.log(menuState)
   useEffect(() => {
 
     setMenuState(false)
@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="flex flex-col">
 
-      <div className="flex items-center justify-between border w-[92%] m-auto">
+      <div className="flex items-center justify-between w-[92%] m-auto gap-x-2">
         <button onClick={() => setMenuState(!menuState)} type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5  text-center w-1/2  h-[50px]">
           <h2>MENU</h2>
           <p className='text-red-500'>{menuState ? "Close" : "Open"}</p>
@@ -60,16 +60,9 @@ function App() {
       <Outlet />
 
 
-      <button onClick={addOrder} type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center   h-[50px]">Zakaz berish</button>
+      <button onClick={addOrder} type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center   h-[50px] w-[92%] mx-auto my-3">Zakaz berish</button>
       {/* <ReactLoading  className='loading' type={"spokes"} color='black' width={300} height={300} /> */}
 
-
-
-
-
-      <div>
-        <p class="text-lg font-medium text-gray-900 dark:text-white">...</p>
-      </div>
 
     </div>
   );
