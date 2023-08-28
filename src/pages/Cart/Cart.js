@@ -12,7 +12,6 @@ function Cart() {
 
 
 
-
     return (<>
         {cart.length < 1 ? <div className="bg-yellow-400 text-white text-center font-bold py-5 text-xl w-[92%] mx-auto rounded-md">
             <h1>Zakaz yo'q</h1>
@@ -23,26 +22,26 @@ function Cart() {
                         <h1 className='text-white'>{place}</h1>
                     </div>
 
-                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg h-[50vh] overflow-y-auto">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg h-[50vh] overflow-y-auto">
+                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3">
                                         Ro'yhat
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3">
                                         soni
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3">
                                         o'chirish
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3">
                                         Narxi
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3">
                                         Price
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3">
                                         Narxlari
                                     </th>
 

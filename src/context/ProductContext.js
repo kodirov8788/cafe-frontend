@@ -15,7 +15,7 @@ export const ContextProvider = ({ children }) => {
     const [messages, setMessages] = useState([]);
     const [places, setPlaces] = useState([]);
     const [cartData, setCartData] = useState([])
-    const [data, setData] = useState([])
+    const [orderData, setOrderData] = useState([])
     const [producttDate, setproducttDate] = useState('maxsulot')
     const [cart, setCart] = useState([])
     const [place, setPlace] = useState("")
@@ -49,7 +49,7 @@ export const ContextProvider = ({ children }) => {
                 setPlaces(filteredTable);
 
                 const filteredData = res?.data.filter(item => item.isready === false);
-                setData(filteredData);
+                setOrderData(filteredData);
             } catch (error) {
                 console.log(error);
             }
@@ -96,7 +96,7 @@ export const ContextProvider = ({ children }) => {
 
     const navigate = useNavigate()
 
-    console.log(cart);
+    // console.log(cart);
     // console.log(cart);
 
     useEffect(() => {
@@ -156,10 +156,35 @@ export const ContextProvider = ({ children }) => {
             })
 
     }
+    const reloadCart = () => {
+    }
+
+    // useEffect(() => {
+    //     if (cart.length < 1) {
+    //         window.location.reload()
+    //     }
+    // }, [cart])
 
 
 
 
-    let contextData = { setPlaces, places, producttDate, setproducttDate, cartData, cart, setCart, place, setPlace, user, messages, setData, data, addOrder, setMadeOrder, madeOrder }
+    let contextData = {
+        setPlaces,
+        places,
+        producttDate,
+        setproducttDate,
+        cartData,
+        cart,
+        setCart,
+        place,
+        setPlace,
+        user,
+        messages,
+        setOrderData,
+        orderData,
+        addOrder,
+        setMadeOrder,
+        madeOrder
+    }
     return <ProductContext.Provider value={contextData}>{children}</ProductContext.Provider>
 }
