@@ -16,11 +16,13 @@ import "react-toastify/dist/ReactToastify.css";
 // import Pushers from './Pushers';
 import Madeorder from './pages/madeorder/Madeorder';
 import Header from './components/Header';
+import Loading from './components/Loading';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ContextProvider>
+        <Loading />
         <ToastContainer />
         <Header />
 

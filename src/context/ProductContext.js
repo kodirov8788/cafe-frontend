@@ -11,7 +11,7 @@ import { stol } from "../Static_data";
 
 export const ProductContext = createContext()
 export const ContextProvider = ({ children }) => {
-
+    const [isLoading, setLoading] = useState(false)
     const [messages, setMessages] = useState([]);
     const [places, setPlaces] = useState([]);
     const [cartData, setCartData] = useState([])
@@ -24,38 +24,31 @@ export const ContextProvider = ({ children }) => {
 
     useEffect(() => {
         const getApi = async () => {
-            await axios.get("order/get")
+            setLoading(true)
+            await axios.get("/order/get")
                 .then(res => {
+                    const box = res?.data.map(item => item.tablenumber);
+
+                    const filteredTable = stol.filter(item => {
+                        return !box.some(boxItem => boxItem === item.value);
+                    });
+                    setPlaces(filteredTable);
+
+                    const filteredData = res?.data.filter(item => item.isready === false);
+                    setOrderData(filteredData);
 
                     let filtered = res?.data.filter(item => item.isready === true)
                     setMadeOrder(filtered)
-
+                    setLoading(false)
                 })
-                .catch(error => console.log(error))
-        }
-        getApi()
-    }, [messages])
-
-    useEffect(() => {
-
-        const getApi = async () => {
-            try {
-                const res = await axios.get("/order/get");
-                const box = res?.data.map(item => item.tablenumber);
-
-                const filteredTable = stol.filter(item => {
-                    return !box.some(boxItem => boxItem === item.value);
+                .catch(error => {
+                    console.log(error);
+                    setLoading(false)
                 });
-                setPlaces(filteredTable);
-
-                const filteredData = res?.data.filter(item => item.isready === false);
-                setOrderData(filteredData);
-            } catch (error) {
-                console.log(error);
-            }
         };
+
         getApi();
-    }, [messages])
+    }, [messages]);
     // console.log(places)
 
     useEffect(() => {
@@ -82,11 +75,6 @@ export const ContextProvider = ({ children }) => {
         audio.play();
     }
 
-
-
-
-
-
     const [user, setUser] = useState({
         username: "Zilola11",
         name: "zilllola",
@@ -95,9 +83,6 @@ export const ContextProvider = ({ children }) => {
     })
 
     const navigate = useNavigate()
-
-    // console.log(cart);
-    // console.log(cart);
 
     useEffect(() => {
         async function findDuplicateUsers() {
@@ -129,6 +114,7 @@ export const ContextProvider = ({ children }) => {
 
 
     const addOrder = async () => {
+        setLoading(true)
         const newObj = {
             ordernumber: 11,
             waitername: user.username,
@@ -136,6 +122,8 @@ export const ContextProvider = ({ children }) => {
             order: cart,
         }
         console.log(newObj)
+
+
         await axios.post("order/create", newObj)
             .then(res => {
                 toast.success("muvaffaqiyatli joylandi", {
@@ -143,6 +131,7 @@ export const ContextProvider = ({ children }) => {
                     autoClose: 2000,
                 });
                 setCart([])
+                setLoading(false)
                 setPlace("")
                 navigate("/order")
 
@@ -153,20 +142,10 @@ export const ContextProvider = ({ children }) => {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 2000,
                 });
+                setLoading(false)
             })
 
     }
-    const reloadCart = () => {
-    }
-
-    // useEffect(() => {
-    //     if (cart.length < 1) {
-    //         window.location.reload()
-    //     }
-    // }, [cart])
-
-
-
 
     let contextData = {
         setPlaces,
@@ -184,7 +163,9 @@ export const ContextProvider = ({ children }) => {
         orderData,
         addOrder,
         setMadeOrder,
-        madeOrder
+        madeOrder,
+        setLoading,
+        isLoading
     }
     return <ProductContext.Provider value={contextData}>{children}</ProductContext.Provider>
 }
