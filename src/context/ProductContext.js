@@ -12,6 +12,7 @@ import { stol } from "../Static_data";
 export const ProductContext = createContext()
 export const ContextProvider = ({ children }) => {
     const [isLoading, setLoading] = useState(false)
+    const [sensor, setSensor] = useState(false)
     const [messages, setMessages] = useState([]);
     const [places, setPlaces] = useState([]);
     const [cartData, setCartData] = useState([])
@@ -33,7 +34,6 @@ export const ContextProvider = ({ children }) => {
                         return !box.some(boxItem => boxItem === item.value);
                     });
                     setPlaces(filteredTable);
-
                     const filteredData = res?.data.filter(item => item.isready === false);
                     setOrderData(filteredData);
 
@@ -48,7 +48,7 @@ export const ContextProvider = ({ children }) => {
         };
 
         getApi();
-    }, [messages]);
+    }, [messages, sensor]);
     // console.log(places)
 
     useEffect(() => {
@@ -76,10 +76,12 @@ export const ContextProvider = ({ children }) => {
     }
 
     const [user, setUser] = useState({
+        id: "0001",
         username: "Zilola11",
         name: "zilllola",
         role: "user",
-        gender: "femele"
+        gender: "femele",
+
     })
 
     const navigate = useNavigate()
@@ -165,7 +167,9 @@ export const ContextProvider = ({ children }) => {
         setMadeOrder,
         madeOrder,
         setLoading,
-        isLoading
+        isLoading,
+        setSensor,
+        sensor
     }
     return <ProductContext.Provider value={contextData}>{children}</ProductContext.Provider>
 }

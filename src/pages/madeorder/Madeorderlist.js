@@ -1,8 +1,11 @@
 // import axios from 'axios'
 import axios from '../../api/Api'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { ProductContext } from '../../context/ProductContext'
+import { toast } from 'react-toastify'
 
 function Madeorderlist({ order, index }) {
+    const { setLoading, setSensor, sensor } = useContext(ProductContext)
 
 
 
@@ -38,9 +41,20 @@ function Madeorderlist({ order, index }) {
     }, []);
 
     const deleteOrder = async () => {
+        setLoading(true)
         return await axios.delete(`order/delete/${order._id}`)
-            .then(res => console.log(res))
-            .catch(error => console.log(error))
+            .then(res => {
+                setLoading(false)
+                setSensor(true)
+                console.log(res)
+                toast.success(`${res.data.tablenumber} o'chirildi.`, {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 3000,
+                });
+            })
+            .catch(error => {
+                setLoading(false)
+            })
     }
 
     // const madeProduct = async () => {
