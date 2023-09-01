@@ -47,6 +47,10 @@ export const ContextProvider = ({ children }) => {
                 });
         };
 
+        if (cartData.length < 1) {
+            navigate("/")
+        }
+
         getApi();
     }, [messages, sensor]);
     // console.log(places)
@@ -116,37 +120,44 @@ export const ContextProvider = ({ children }) => {
 
 
     const addOrder = async () => {
-        setLoading(true)
-        const newObj = {
-            ordernumber: 11,
-            waitername: user.username,
-            tablenumber: place,
-            order: cart,
+        if (cart.length < 1) {
+            toast.info("Maxsulot tanglang", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 3000,
+            });
+        } else {
+            setLoading(true)
+            const newObj = {
+                ordernumber: 11,
+                waitername: user.username,
+                tablenumber: place,
+                order: cart,
+            }
+            console.log(newObj)
+
+
+            await axios.post("order/create", newObj)
+                .then(res => {
+                    toast.success("muvaffaqiyatli joylandi", {
+                        position: toast.POSITION.TOP_RIGHT,
+                        autoClose: 2000,
+                    });
+                    setCart([])
+                    setLoading(false)
+                    setPlace("")
+                    navigate("/order")
+
+                })
+                .catch(error => {
+                    console.log(error)
+                    toast.error("serverda xatolik bor", {
+                        position: toast.POSITION.TOP_RIGHT,
+                        autoClose: 2000,
+                    });
+                    setLoading(false)
+                })
+
         }
-        console.log(newObj)
-
-
-        await axios.post("order/create", newObj)
-            .then(res => {
-                toast.success("muvaffaqiyatli joylandi", {
-                    position: toast.POSITION.TOP_RIGHT,
-                    autoClose: 2000,
-                });
-                setCart([])
-                setLoading(false)
-                setPlace("")
-                navigate("/order")
-
-            })
-            .catch(error => {
-                console.log(error)
-                toast.error("serverda xatolik bor", {
-                    position: toast.POSITION.TOP_RIGHT,
-                    autoClose: 2000,
-                });
-                setLoading(false)
-            })
-
     }
 
     let contextData = {
