@@ -42,7 +42,7 @@ function Madeorderlist({ order, index }) {
 
     const deleteOrder = async () => {
         setLoading(true)
-        return await axios.delete(`order/delete/${order._id}`)
+        return await axios.post(`order/delete/${order._id}`)
             .then(res => {
                 setLoading(false)
                 setSensor(true)
@@ -54,12 +54,13 @@ function Madeorderlist({ order, index }) {
             })
             .catch(error => {
                 setLoading(false)
+                console.log(error)
             })
     }
 
     // const madeProduct = async () => {
     //     console.log(order._id)
-    //     await axios.put(`http://localhost:8000/order/made/${order._id}`)
+    //     await axios.post(`http://localhost:8000/order/made/${order._id}`)
     //         .then(res => console.log(res))
     //         .catch(error => console.log(error))
     // }
